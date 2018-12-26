@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://FLOOR.tscn" type="PackedScene" id=1]
+[ext_resource path="res://walls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player.gd" type="Script" id=4]
+[ext_resource path="res://Camera.gd" type="Script" id=5]
+
+[node name="main" type="Spatial" index="0"]
+
+[node name="FLOOR" parent="." index="0" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00922394, 0.000738144, -0.0433636 )
+
+[node name="walls" parent="." index="1" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, -9.34401, 96.6103, 2.07398, 1.88448 )
+
+[node name="walls2" parent="." index="2" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, -9.34401, -97.989, 2.07398, 1.88448 )
+
+[node name="walls3" parent="." index="3" instance=ExtResource( 2 )]
+
+transform = Transform( 4.37114e-008, 3.82137e-015, -9.34401, 8.74228e-008, -1, 0, -1, -8.74228e-008, -4.08439e-007, 10.4805, 2.07398, -93.7739 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="walls4" parent="." index="4" instance=ExtResource( 2 )]
+
+transform = Transform( 4.37114e-008, 3.82137e-015, -9.34401, 8.74228e-008, -1, 0, -1, -8.74228e-008, -4.08439e-007, 10.4805, 2.07398, 94.2787 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="player" parent="." index="5" instance=ExtResource( 3 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.62802, 0 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera" parent="." index="6"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 70.0
+size = 1.0
+near = 0.05
+far = 1.67772e+007
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+
