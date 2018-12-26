@@ -33,3 +33,17 @@ func _physics_process(delta):
 	offset = offset.normalized()
 	offset = offset * speed * delta
 	self.translate(offset)
+	
+	# rotation
+	var pos = global_transform.origin
+	var target = pos + Vector3(0, -1, -1).normalized()
+	var up = Vector3(0, 1, 0)
+	var delta2 = pos - target
+	look_at_from_position(pos, target, up)
+	# Turn a little up or down
+	#var t = transform
+	#t.basis = Basis(t.basis[0], deg2rad(angle_v_adjust))*t.basis
+	#transform = t
+	# pos = target + delta
+	
+
