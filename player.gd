@@ -16,13 +16,13 @@ func _ready():
 func _physics_process(delta):
 	if is_on_floor(): # Only allow for direction modifications if we are on the floor, no bunny hopping
 		direction = Vector3(0, 0, 0)
-		if Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("left-wasd"): # ui_left
 			direction.x -= 1
-		if Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("right-wasd"): #ui_right
 			direction.x += 1
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("up_wasd"): #ui_up
 			direction.z -= 1
-		if Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("down_wasd"): #ui_down
 			direction.z += 1
 	direction = direction.normalized()
 	direction = direction * speed * delta
