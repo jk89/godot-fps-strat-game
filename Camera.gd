@@ -13,13 +13,26 @@ func trackUnit(unit):
 	pass
 
 func _ready():
+	set_process_input(true)
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
 
-var speed = 20
+var speed = 50
 var offset = Vector3()
 
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed(): # zoom in
+			if event.button_index == BUTTON_WHEEL_UP:
+				scrollup = true
+				# call the zoom function
+	        # zoom out
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				scrolldown = true
+
+var scrollup = false
+var scrolldown = false
 func _physics_process(delta):
 	offset = Vector3(0, 0, 0)
 	var pos = global_transform.origin
@@ -37,11 +50,24 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_down"): #ui_down
 		offset.y -= 1
 		offset.z += 1
-	if Input.is_action_pressed("scroll_out"):
-		offset.z -= 1
-	if Input.is_action_pressed("scroll_in"):
-		offset.z += 1
-	offset = offset.normalized()
+	if Input.is_action_pressed("scroll_out") or scrolldown == true:
+		offset.z -= 8
+	if Input.is_action_pressed("scroll_in") or scrollup == true:
+		offset.z += 8
+	scrollup = false
+	scrolldown = false
+#	if event is InputEventMouseButton:
+#		if event.is_pressed(): # zoom in
+#			if event.button_index == BUTTON_WHEEL_UP:
+#				zoom_pos = get_global_mouse_position()
+#				# call the zoom function
+#	        # zoom out
+#			if event.button_index == BUTTON_WHEEL_DOWN:
+#				zoom_pos = get_global_mouse_position()
+#				#call the zoom function
+	
+	
+	#offset = offset.normalized()
 	offset = offset * speed * delta
 	self.translate(offset)
 
