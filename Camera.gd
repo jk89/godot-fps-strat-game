@@ -22,24 +22,34 @@ var offset = Vector3()
 
 func _physics_process(delta):
 	offset = Vector3(0, 0, 0)
+	var pos = global_transform.origin
+	var target = pos + Vector3(0, -1, -1).normalized()
+	var up = Vector3(0, 1, 0)
+	look_at_from_position(pos, target, up)
+
 	if Input.is_action_pressed("ui_left"): # ui_left
 		offset.x -= 1
 	if Input.is_action_pressed("ui_right"): #ui_right
 		offset.x += 1
 	if Input.is_action_pressed("ui_up"): #ui_up
+		offset.y += 1
 		offset.z -= 1
 	if Input.is_action_pressed("ui_down"): #ui_down
+		offset.y -= 1
+		offset.z += 1
+	if Input.is_action_pressed("scroll_out"):
+		offset.z -= 1
+	if Input.is_action_pressed("scroll_in"):
 		offset.z += 1
 	offset = offset.normalized()
 	offset = offset * speed * delta
 	self.translate(offset)
-	
+
 	# rotation
-	var pos = global_transform.origin
-	var target = pos + Vector3(0, -1, -1).normalized()
-	var up = Vector3(0, 1, 0)
-	var delta2 = pos - target
-	look_at_from_position(pos, target, up)
+	# var pos = global_transform.origin
+	var target2 = pos + Vector3(0, -1, -1).normalized()
+
+	# look_at_from_position(pos, target2, up)
 	# Turn a little up or down
 	#var t = transform
 	#t.basis = Basis(t.basis[0], deg2rad(angle_v_adjust))*t.basis
