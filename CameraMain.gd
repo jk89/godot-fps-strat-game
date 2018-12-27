@@ -51,9 +51,9 @@ func _physics_process(delta):
 		offset.y -= 1
 		offset.z += 1
 	if Input.is_action_pressed("scroll_out") or scrolldown == true:
-		offset.z -= 8
+		offset.z -= 1
 	if Input.is_action_pressed("scroll_in") or scrollup == true:
-		offset.z += 8
+		offset.z += 1
 	scrollup = false
 	scrolldown = false
 #	if event is InputEventMouseButton:
