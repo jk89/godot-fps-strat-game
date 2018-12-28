@@ -77,6 +77,8 @@ func hide_boundingSelector():
 	leftTexture.set_position(Vector2(0, 0))
 	rightTexture.set_size(Vector2(0, 0))
 	rightTexture.set_position(Vector2(0, 0))
+	clickOrigin = Vector2(0, 0)
+	clickDestination = Vector2(0, 0)
 
 func reshape_boundingSelector():
 	if not dragging:
