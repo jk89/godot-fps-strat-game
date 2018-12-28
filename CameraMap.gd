@@ -42,6 +42,7 @@ func _physics_process(delta):
 	var up = Vector3(1, 1, 0)
 	
 	look_at_from_position(pos, target, up)
+	rotate(Vector3(0, 1, 0), deg2rad(90))
 
 	if Input.is_action_pressed("ui_left"): # ui_left
 		offset.x -= 1
