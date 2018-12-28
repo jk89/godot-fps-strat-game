@@ -6,7 +6,7 @@ extends Node
 
 func _ready():
 	set_process_input(true)
-	reshape_boundingSelector()
+	hide_boundingSelector()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
