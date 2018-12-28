@@ -74,6 +74,8 @@ func _physics_process(delta):
 	#offset = offset.normalized()
 	offset = offset * speed * delta
 	self.translate(offset)
+	print(self.size)
+	self.size += offset.z
 
 	# rotation
 	# var pos = global_transform.origin
