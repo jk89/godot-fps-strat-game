@@ -27,9 +27,10 @@ var clickDestination = Vector2(10, 20)
 var limitedMousePosition = Vector2(0, 0)
 
 func calculateLimitedMousePosition(event):
-	if event.position.x >= 0:
+	print(event.position)
+	if event.position.x >= clickOrigin.x:
 		limitedMousePosition.x = event.position.x
-	if event.position.y >= 0:
+	if event.position.y >= clickOrigin.y:
 		limitedMousePosition.y = event.position.y
 
 var dragging = false

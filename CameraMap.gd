@@ -14,7 +14,7 @@ func trackUnit(unit):
 
 func _ready():
 	set_process_input(true)
-	# Called when the node is added to the scene for the first time.
+	#Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
 
@@ -33,6 +33,7 @@ func _input(event):
 
 var scrollup = false
 var scrolldown = false
+var firstTick = true
 func _physics_process(delta):
 	offset = Vector3(0, 0, 0)
 	var pos = global_transform.origin
@@ -41,7 +42,11 @@ func _physics_process(delta):
 	#print(target)
 	var up = Vector3(1, 1, 0)
 	
-	look_at_from_position(pos, target, up)
+	if firstTick:
+		look_at_from_position(Vector3(0, 200, 0), target, up)
+		firstTick = false
+	else:
+		look_at_from_position(pos, target, up)
 	rotate(Vector3(0, 1, 0), deg2rad(90))
 
 	if Input.is_action_pressed("ui_left"): # ui_left
@@ -73,8 +78,8 @@ func _physics_process(delta):
 
 	#offset = offset.normalized()
 	offset = offset * speed * delta
+	
 	self.translate(offset)
-	print(self.size)
 	self.size += offset.z
 
 	# rotation
