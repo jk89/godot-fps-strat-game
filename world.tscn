@@ -6,7 +6,7 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player.gd" type="Script" id=5]
 
-[node name="world" type="Spatial"]
+[node name="world" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -34,6 +34,6 @@ transform = Transform( 4.37114e-008, 3.82137e-015, -9.34401, 8.74228e-008, -1, 0
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.62802, 0 )
 script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Axis Lock", "Collision", "Pause", "Transform", "Visibility", "collision" ]
 
 

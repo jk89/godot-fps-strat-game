@@ -16,6 +16,8 @@ onready var leftTexture = treeRoot.find_node("TextureRectLeft", true, false)
 onready var rightTexture = treeRoot.find_node("TextureRectRight", true, false)
 onready var bottomTexture = treeRoot.find_node("TextureRectBottom", true, false)
 onready var topTexture = treeRoot.find_node("TextureRectTop", true, false)
+onready var worldNode = treeRoot.find_node("world", true, false)
+onready var space_state = worldNode.get_world().get_direct_space_state()
 
 const lineThickness = 2
 
@@ -27,7 +29,7 @@ var clickDestination = Vector2(10, 20)
 var limitedMousePosition = Vector2(0, 0)
 
 func calculateLimitedMousePosition(event):
-	print(event.position)
+	#print(event.position)
 	if event.position.x >= clickOrigin.x:
 		limitedMousePosition.x = event.position.x
 	if event.position.y >= clickOrigin.y:
@@ -50,6 +52,7 @@ func _input(event):
 				dragging = false
 				clickDestination = limitedMousePosition
 				reshape_boundingSelector()
+				segment_cast()
 				pass
 		elif event.button_index == BUTTON_RIGHT:
 			if Input.is_action_pressed("click_right"):
@@ -60,6 +63,18 @@ func _input(event):
 		reshape_boundingSelector()
 		pass
 
+func segment_cast():
+	var segment = SegmentShape2D.new()
+	segment.set_a(clickOrigin)
+	segment.set_b(clickDestination)
+	var query = PhysicsShapeQueryParameters.new()
+	#query.set_exclude([self])
+	#query.set_collision_layer(2)
+	query.set_shape(segment)
+	#var hits = space_state.intersect_shape(query, 12)
+	#print("hits")
+	#print(hits)
+	pass
 
 func _process(delta):
 	

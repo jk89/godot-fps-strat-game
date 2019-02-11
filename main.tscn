@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://world.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CameraMain.gd" type="Script" id=3]
 [ext_resource path="res://boundingSelector.gd" type="Script" id=4]
-[ext_resource path="res://CameraMap.gd" type="Script" id=5]
+[ext_resource path="res://SelectionBox.gd" type="Script" id=5]
+[ext_resource path="res://CameraMap.gd" type="Script" id=6]
 
 [sub_resource type="Gradient" id=1]
 
@@ -20,7 +21,7 @@ width = 2048
 [sub_resource type="World" id=3]
 
 
-[node name="main" type="Spatial" index="0"]
+[node name="main" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -187,14 +188,33 @@ expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
+[node name="SelectionBox" type="Control" parent="Control/ViewportContainerMain/ViewportMain" index="3"]
+
+visible = false
+light_mask = 9
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 5 )
+_sections_unfolded = [ "Material", "Mouse", "Pause", "Theme", "Visibility" ]
+
 [node name="ViewportContainerMap" type="ViewportContainer" parent="Control" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 511.0
-margin_right = 234.0
+margin_top = 358.0
+margin_right = 312.0
 margin_bottom = 602.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -209,7 +229,7 @@ _sections_unfolded = [ "Margin", "Material", "Size Flags", "Visibility" ]
 [node name="ViewportMap" type="Viewport" parent="Control/ViewportContainerMap" index="0"]
 
 arvr = false
-size = Vector2( 234, 91 )
+size = Vector2( 312, 244 )
 own_world = false
 world = SubResource( 3 )
 transparent_bg = false
@@ -244,10 +264,10 @@ doppler_tracking = 0
 projection = 1
 current = true
 fov = 70.0
-size = 50.0
+size = 100.0
 near = 0.05
 far = 1.67772e+007
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="world" parent="Control/ViewportContainerMap/ViewportMap" index="1" instance=ExtResource( 2 )]

@@ -11,7 +11,23 @@ var velocity = Vector3()
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	self.connect("select", self, "select_callback")
 	pass
+
+signal select(vis)
+
+func select_callback(vis):
+	print("Got callback with args! vis: ", vis)
+	var myMesh = self.find_node("MeshInstance")
+	var surface_material = myMesh.get_surface_material(0)
+	if vis:
+		surface_material.albedo_color = Color8(0, 255, 0)
+		myMesh.set_surface_material(0, surface_material)
+		print(surface_material)
+	else:
+		surface_material.albedo_color = Color8(255, 0, 0) # ff0000
+		myMesh.set_surface_material(0, surface_material)
+		print(surface_material)
 
 func _physics_process(delta):
 	if is_on_floor(): # Only allow for direction modifications if we are on the floor, no bunny hopping
