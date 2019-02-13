@@ -1,27 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://world.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CameraMain.gd" type="Script" id=3]
-[ext_resource path="res://boundingSelector.gd" type="Script" id=4]
+[ext_resource path="res://1x1-64ff647f.png" type="Texture" id=4]
 [ext_resource path="res://SelectionBox.gd" type="Script" id=5]
 [ext_resource path="res://CameraMap.gd" type="Script" id=6]
-
-[sub_resource type="Gradient" id=1]
-
-offsets = PoolRealArray( 0, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-
-flags = 4
-gradient = SubResource( 1 )
-width = 2048
 
 [sub_resource type="World" id=3]
 
 
-[node name="main" type="Spatial"]
+[node name="main" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -47,8 +36,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 2.0
-margin_right = 1028.0
+margin_right = 1000.0
 margin_bottom = 598.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -63,7 +51,7 @@ _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Size Flags" ]
 [node name="ViewportMain" type="Viewport" parent="Control/ViewportContainerMain" index="0"]
 
 arvr = false
-size = Vector2( 1028, 596 )
+size = Vector2( 1000, 598 )
 own_world = false
 world = null
 transparent_bg = false
@@ -88,6 +76,8 @@ shadow_atlas_quad_3 = 4
 
 [node name="world" parent="Control/ViewportContainerMain/ViewportMain" index="0" instance=ExtResource( 2 )]
 
+_sections_unfolded = [ "Transform", "Visibility" ]
+
 [node name="CameraMain" type="Camera" parent="Control/ViewportContainerMain/ViewportMain" index="1"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 20 )
@@ -106,98 +96,33 @@ far = 1.67772e+007
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="boundingSelector" type="Node" parent="Control/ViewportContainerMain/ViewportMain" index="2"]
+[node name="TextureRect" type="TextureRect" parent="Control/ViewportContainerMain/ViewportMain" index="2"]
 
-script = ExtResource( 4 )
-
-[node name="TextureRectTop" type="TextureRect" parent="Control/ViewportContainerMain/ViewportMain/boundingSelector" index="0"]
-
+modulate = Color( 0.221313, 0.578125, 0, 1 )
+self_modulate = Color( 0.21875, 1, 0, 1 )
+show_behind_parent = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 100.0
-margin_bottom = 2.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = SubResource( 2 )
+texture = ExtResource( 4 )
 expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="TextureRectBottom" type="TextureRect" parent="Control/ViewportContainerMain/ViewportMain/boundingSelector" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 100.0
-margin_right = 100.0
-margin_bottom = 102.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = SubResource( 2 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="TextureRectLeft" type="TextureRect" parent="Control/ViewportContainerMain/ViewportMain/boundingSelector" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 2.0
-margin_bottom = 100.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = SubResource( 2 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="TextureRectRight" type="TextureRect" parent="Control/ViewportContainerMain/ViewportMain/boundingSelector" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 100.0
-margin_right = 102.0
-margin_bottom = 102.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = SubResource( 2 )
-expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
+stretch_mode = 2
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Margin", "Material", "Mouse", "Rect", "Visibility" ]
 
 [node name="SelectionBox" type="Control" parent="Control/ViewportContainerMain/ViewportMain" index="3"]
 
-visible = false
 light_mask = 9
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -205,7 +130,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 5 )
-_sections_unfolded = [ "Material", "Mouse", "Pause", "Theme", "Visibility" ]
+_sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Pause", "Rect", "Theme", "Visibility" ]
 
 [node name="ViewportContainerMap" type="ViewportContainer" parent="Control" index="1"]
 
