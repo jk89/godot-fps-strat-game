@@ -7,7 +7,7 @@
 [ext_resource path="res://SelectionBox.gd" type="Script" id=5]
 [ext_resource path="res://CameraMap.gd" type="Script" id=6]
 
-[sub_resource type="World" id=3]
+[sub_resource type="World" id=1]
 
 
 [node name="main" type="Spatial" index="0"]
@@ -156,7 +156,7 @@ _sections_unfolded = [ "Margin", "Material", "Size Flags", "Visibility" ]
 arvr = false
 size = Vector2( 312, 244 )
 own_world = false
-world = SubResource( 3 )
+world = SubResource( 1 )
 transparent_bg = false
 msaa = 0
 hdr = true
@@ -196,5 +196,7 @@ script = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="world" parent="Control/ViewportContainerMap/ViewportMap" index="1" instance=ExtResource( 2 )]
+
+_sections_unfolded = [ "Transform" ]
 
 

@@ -1,5 +1,7 @@
 extends Camera
-
+onready var treeRoot = get_tree().get_root()
+onready var worldNode = treeRoot.find_node("world", true, false)
+onready var space_state = worldNode.get_world().get_direct_space_state()
 enum CameraMode {
 	UNIT_TRACK,
 	ISOMETRIC
@@ -20,7 +22,8 @@ func _ready():
 
 var speed = 50
 var offset = Vector3()
-
+var ray_length = 5000
+var target
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed(): # zoom in
@@ -30,6 +33,13 @@ func _input(event):
 	        # zoom out
 			if event.button_index == BUTTON_WHEEL_DOWN:
 				scrolldown = true
+		if event.button_index == BUTTON_RIGHT:
+			var from = self.project_ray_origin(event.position)
+			var to = from + self.project_ray_normal(event.position) * ray_length
+			target = space_state.intersect_ray( from, to )
+			for object in [treeRoot.find_node("world", true, false).find_node("player")]:
+				object.emit_signal("move", target)
+
 
 var scrollup = false
 var scrolldown = false
