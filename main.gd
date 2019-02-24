@@ -10,16 +10,24 @@ onready var viewportMap = $Control/ViewportContainerMap/ViewportMap
 onready var cameraMain = $Control/ViewportContainerMain/ViewportMain/CameraMain
 onready var cameraMap = $Control/ViewportContainerMap/ViewportMap/CameraMap
 onready var world = $Control/ViewportContainerMain/ViewportMain/world
+onready var treeRoot = get_tree().get_root()
+onready var worldNode = treeRoot.find_node("world", true, false)
 
+onready var allSelectableUnits = []
 func _ready():
 	#viewportMap.world = viewportMain.world
 	pass
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	#randomize()
-	#for i in range(500):
-	#	var s = player.instance()
-	#	add_child(s)
+	randomize()
+	allSelectableUnits.push_front(self.find_node("player"))
+	for i in range(5):
+		var player = preload("res://player.tscn")
+		var s = player.instance()
+		s.translation = Vector3(rand_range(1,11), rand_range(1,11), rand_range(1,11))
+		self.add_child(s)
+		allSelectableUnits.push_front(s)
+
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
