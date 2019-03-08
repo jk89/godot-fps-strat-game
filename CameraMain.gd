@@ -37,7 +37,9 @@ func _input(event):
 			var from = self.project_ray_origin(event.position)
 			var to = from + self.project_ray_normal(event.position) * ray_length
 			target = space_state.intersect_ray( from, to )
-			for object in [treeRoot.find_node("world", true, false).find_node("player")]:
+			for object in worldNode.allSelectableUnits:
+				print("here")
+				print(object)
 				object.emit_signal("move", target)
 
 

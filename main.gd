@@ -20,10 +20,11 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	randomize()
-	allSelectableUnits.push_front(self.find_node("player"))
-	for i in range(5):
-		var player = preload("res://player.tscn")
+	#allSelectableUnits.push_front(self.find_node("player"))
+	for i in range(1):
+		var player = preload("res://player2.tscn")
 		var s = player.instance()
+		#s.set_name("kek")
 		s.translation = Vector3(rand_range(1,11), rand_range(1,11), rand_range(1,11))
 		self.add_child(s)
 		allSelectableUnits.push_front(s)

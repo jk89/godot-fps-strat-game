@@ -12,8 +12,8 @@ onready var worldNode = treeRoot.find_node("main", true, false)
 
 
 func _ready():
-	print ("im alive")
-	set_as_toplevel(true)
+	print ("im alive2")
+	#set_as_toplevel(true)
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	self.connect("select", self, "select_callback")
@@ -26,7 +26,7 @@ signal move(target)
 var myTarget
 func move_callback(target):
 	print("Got callback move target with args! target", target)
-	if (target and selected):
+	if (target): #selected
 		myTarget = target
 
 
@@ -63,18 +63,22 @@ func _physics_process(delta):
 		direction = Vector3(0, 0, 0)
 		if myTarget and self.translation.x > myTarget.position.x:
 			direction.x -= abs(self.translation.x - myTarget.position.x)* speed / delta
+			print("leeefft")
 		if Input.is_action_pressed("left-wasd"): # ui_left
 			direction.x -= 1
 		if myTarget and self.translation.x < myTarget.position.x:
 			direction.x += abs(self.translation.x - myTarget.position.x)* speed / delta
+			print("rigghhht")
 		if Input.is_action_pressed("right-wasd"): #ui_right
 			direction.x += 1
 		if myTarget and self.translation.z > myTarget.position.z:
 			direction.z -= abs(self.translation.z - myTarget.position.z)* speed / delta
+			print("upppp")
 		if Input.is_action_pressed("up_wasd"): #ui_up
 			direction.z -= 1
 		if myTarget and self.translation.z < myTarget.position.z:
 			direction.z += abs(self.translation.z - myTarget.position.z)* speed / delta
+			print("downnnn")
 		if Input.is_action_pressed("down_wasd"): #ui_down
 			print("move down")
 			direction.z += 1
@@ -84,6 +88,8 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity.x = direction.x
 	velocity.z = direction.z
+	#print("player2 velocity")
+	#print(velocity)
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 	if is_on_floor() and Input.is_key_pressed(KEY_SPACE):
 		velocity.y = 11

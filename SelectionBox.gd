@@ -55,7 +55,7 @@ func SelectObject():
 	var selfRect = get_rect()
 	print(worldNode.allSelectableUnits)
 	for object in worldNode.allSelectableUnits:# #[treeRoot.find_node("world", true, false).find_node("player")]:
-		print(object)
+		#print(object)
 		if object.is_class("Spatial") or object.is_class("KinematicBody"):
 			print("selected node")
 			object.emit_signal("select", selfRect.has_point(camera.unproject_position(object.get_transform().origin)))
