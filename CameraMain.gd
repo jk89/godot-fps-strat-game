@@ -38,8 +38,8 @@ func _input(event):
 			var to = from + self.project_ray_normal(event.position) * ray_length
 			target = space_state.intersect_ray( from, to )
 			for object in worldNode.allSelectableUnits:
-				print("here")
-				print(object)
+				#print("here")
+				#print(object)
 				object.emit_signal("move", target)
 
 

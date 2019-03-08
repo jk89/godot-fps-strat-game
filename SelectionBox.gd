@@ -3,7 +3,7 @@ extends Control
 onready var treeRoot = get_tree().get_root()
 onready var cameraMain = treeRoot.find_node("CameraMain", true, false)
 onready var boundRect = treeRoot.find_node("TextureRect", true, false)
-onready var worldNode = treeRoot.find_node("main", true, false)
+onready var worldNode = treeRoot.find_node("world", true, false)
 var initial
 var current
 var camera
@@ -53,15 +53,13 @@ func CreateBox(event):
 
 func SelectObject():
 	var selfRect = get_rect()
-	print(worldNode.allSelectableUnits)
 	for object in worldNode.allSelectableUnits:# #[treeRoot.find_node("world", true, false).find_node("player")]:
-		#print(object)
 		if object.is_class("Spatial") or object.is_class("KinematicBody"):
-			print("selected node")
-			object.emit_signal("select", selfRect.has_point(camera.unproject_position(object.get_transform().origin)))
+#			print(object.path)
+			object.emit_signal("select", selfRect.has_point(camera.unproject_position(object.get_transform().origin)), object.name)
 			pass
 		elif object.is_class("CanvasItem"):
-			object.emit_signal("select", selfRect.has_point(object.get_pos()))
+			object.emit_signal("select", selfRect.has_point(object.get_pos()), object.name)
 			pass
 func _process(delta):
 	# Called every frame. Delta is time since last frame.

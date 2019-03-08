@@ -12,7 +12,7 @@ onready var worldNode = treeRoot.find_node("main", true, false)
 
 
 func _ready():
-	print ("im alive2")
+	#print ("im alive2")
 	#set_as_toplevel(true)
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -26,27 +26,33 @@ signal move(target)
 var myTarget
 func move_callback(target):
 	print("Got callback move target with args! target", target)
-	if (target): #selected
+	if (target and selected): #selected
 		myTarget = target
 
 
 var selected = false
-func select_callback(vis):
-	print("000")
-	print(worldNode.translation)
-	print("Got callback with args! vis: ", vis)
+func select_callback(vis, name):
+	print("Got callback with args! vis: ", vis, name, self.name)
+	if (self.name != name):
+		return
+	#print("000")
+	#print(worldNode.translation)
 	var myMesh = self.find_node("MeshInstance")
+	var newMaterial = SpatialMaterial.new()
 	var surface_material = myMesh.get_surface_material(0)
 	if vis:
-		surface_material.albedo_color = Color8(0, 255, 0)
-		myMesh.set_surface_material(0, surface_material)
+		newMaterial.albedo_color = Color8(0, 255, 0)
+		newMaterial.metallic = 1
+		newMaterial.metallic_specular = 1
+		myMesh.set_surface_material(0, newMaterial)
 		selected = true
-		print(surface_material)
 	else:
-		surface_material.albedo_color = Color8(255, 0, 0) # ff0000
-		myMesh.set_surface_material(0, surface_material)
+		newMaterial.albedo_color = Color8(255, 0, 0) # ff0000
+		newMaterial.metallic = 1
+		newMaterial.metallic_specular = 1
+		myMesh.set_surface_material(0, newMaterial)
 		selected = false
-		print(surface_material)
+	print("selected?", selected)
 var a = null
 func nearTarget():
 	if myTarget:
@@ -63,24 +69,24 @@ func _physics_process(delta):
 		direction = Vector3(0, 0, 0)
 		if myTarget and self.translation.x > myTarget.position.x:
 			direction.x -= abs(self.translation.x - myTarget.position.x)* speed / delta
-			print("leeefft")
+			#print("leeefft")
 		if Input.is_action_pressed("left-wasd"): # ui_left
 			direction.x -= 1
 		if myTarget and self.translation.x < myTarget.position.x:
 			direction.x += abs(self.translation.x - myTarget.position.x)* speed / delta
-			print("rigghhht")
+			#print("rigghhht")
 		if Input.is_action_pressed("right-wasd"): #ui_right
 			direction.x += 1
 		if myTarget and self.translation.z > myTarget.position.z:
 			direction.z -= abs(self.translation.z - myTarget.position.z)* speed / delta
-			print("upppp")
+			#print("upppp")
 		if Input.is_action_pressed("up_wasd"): #ui_up
 			direction.z -= 1
 		if myTarget and self.translation.z < myTarget.position.z:
 			direction.z += abs(self.translation.z - myTarget.position.z)* speed / delta
-			print("downnnn")
+			#print("downnnn")
 		if Input.is_action_pressed("down_wasd"): #ui_down
-			print("move down")
+			#print("move down")
 			direction.z += 1
 
 	direction = direction.normalized()

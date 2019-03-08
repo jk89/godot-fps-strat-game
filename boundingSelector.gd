@@ -41,14 +41,14 @@ func _input(event):
 		calculateLimitedMousePosition(event)
 		if event.button_index == BUTTON_LEFT:
 			if Input.is_action_pressed("click_left"):
-				print("left pressed")
+				#print("left pressed")
 				dragging = true
 				clickDestination = limitedMousePosition
 				clickOrigin = limitedMousePosition
 				reshape_boundingSelector()
 				pass
 			else:
-				print("left released")
+				#print("left released")
 				dragging = false
 				clickDestination = limitedMousePosition
 				reshape_boundingSelector()

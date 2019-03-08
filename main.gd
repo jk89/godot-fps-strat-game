@@ -7,11 +7,12 @@ extends Spatial
 # var b = "textvar"
 onready var viewportMain = $Control/ViewportContainerMap/ViewportMain
 onready var viewportMap = $Control/ViewportContainerMap/ViewportMap
+
 onready var cameraMain = $Control/ViewportContainerMain/ViewportMain/CameraMain
 onready var cameraMap = $Control/ViewportContainerMap/ViewportMap/CameraMap
 onready var world = $Control/ViewportContainerMain/ViewportMain/world
 onready var treeRoot = get_tree().get_root()
-onready var worldNode = treeRoot.find_node("world", true, false)
+onready var worldNode = self#treeRoot.find_node("world", true, false)
 
 onready var allSelectableUnits = []
 func _ready():
@@ -21,7 +22,7 @@ func _ready():
 	# Initialization here
 	randomize()
 	#allSelectableUnits.push_front(self.find_node("player"))
-	for i in range(1):
+	for i in range(5):
 		var player = preload("res://player2.tscn")
 		var s = player.instance()
 		#s.set_name("kek")
