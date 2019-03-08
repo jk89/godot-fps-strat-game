@@ -22,7 +22,7 @@ func _ready():
 	# Initialization here
 	randomize()
 	#allSelectableUnits.push_front(self.find_node("player"))
-	for i in range(20):
+	for i in range(100):
 		var player = preload("res://player2.tscn")
 		var s = player.instance()
 		#s.set_name("kek")

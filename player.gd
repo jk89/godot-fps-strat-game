@@ -25,14 +25,14 @@ signal move(target)
 
 var myTarget
 func move_callback(target):
-	print("Got callback move target with args! target", target)
+	#print("Got callback move target with args! target", target)
 	if (target and selected): #selected
 		myTarget = target
 
 
 var selected = false
 func select_callback(vis, name):
-	print("Got callback with args! vis: ", vis, name, self.name)
+	#print("Got callback with args! vis: ", vis, name, self.name)
 	if (self.name != name):
 		return
 	#print("000")
@@ -52,7 +52,7 @@ func select_callback(vis, name):
 		newMaterial.metallic_specular = 1
 		myMesh.set_surface_material(0, newMaterial)
 		selected = false
-	print("selected?", selected)
+	#print("selected?", selected)
 var a = null
 func nearTarget():
 	if myTarget:
