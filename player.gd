@@ -70,22 +70,22 @@ func _physics_process(delta):
 		if myTarget and self.translation.x > myTarget.position.x:
 			direction.x -= abs(self.translation.x - myTarget.position.x)* speed / delta
 			#print("leeefft")
-		if Input.is_action_pressed("left-wasd"): # ui_left
+		if Input.is_action_pressed("left-wasd") and selected: # ui_left
 			direction.x -= 1
 		if myTarget and self.translation.x < myTarget.position.x:
 			direction.x += abs(self.translation.x - myTarget.position.x)* speed / delta
 			#print("rigghhht")
-		if Input.is_action_pressed("right-wasd"): #ui_right
+		if Input.is_action_pressed("right-wasd") and selected: #ui_right
 			direction.x += 1
 		if myTarget and self.translation.z > myTarget.position.z:
 			direction.z -= abs(self.translation.z - myTarget.position.z)* speed / delta
 			#print("upppp")
-		if Input.is_action_pressed("up_wasd"): #ui_up
+		if Input.is_action_pressed("up_wasd") and selected: #ui_up
 			direction.z -= 1
 		if myTarget and self.translation.z < myTarget.position.z:
 			direction.z += abs(self.translation.z - myTarget.position.z)* speed / delta
 			#print("downnnn")
-		if Input.is_action_pressed("down_wasd"): #ui_down
+		if Input.is_action_pressed("down_wasd") and selected: #ui_down
 			#print("move down")
 			direction.z += 1
 

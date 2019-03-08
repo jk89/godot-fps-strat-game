@@ -4,7 +4,7 @@
 [ext_resource path="res://FLOOR.tscn" type="PackedScene" id=2]
 [ext_resource path="res://walls.tscn" type="PackedScene" id=3]
 
-[node name="world" type="Spatial"]
+[node name="world" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]

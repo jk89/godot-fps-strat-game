@@ -51,16 +51,31 @@ func CreateBox(event):
 		#set_begin(Vector2(0, 0))
 		#set_end(Vector2(0, 0))
 
+var selectCount = 0
+var singleTarget = null
 func SelectObject():
+	selectCount = 0
+	singleTarget = null
 	var selfRect = get_rect()
 	for object in worldNode.allSelectableUnits:# #[treeRoot.find_node("world", true, false).find_node("player")]:
+		var selected
 		if object.is_class("Spatial") or object.is_class("KinematicBody"):
 #			print(object.path)
-			object.emit_signal("select", selfRect.has_point(camera.unproject_position(object.get_transform().origin)), object.name)
+			selected = selfRect.has_point(camera.unproject_position(object.get_transform().origin))
+			object.emit_signal("select", selected, object.name)
 			pass
 		elif object.is_class("CanvasItem"):
-			object.emit_signal("select", selfRect.has_point(object.get_pos()), object.name)
+			selected = selfRect.has_point(object.get_pos())
+			object.emit_signal("select", selected, object.name)
 			pass
+		if (selected):
+			singleTarget = object
+			selectCount = selectCount + 1
+	if (selectCount == 1):
+		cameraMain.emit_signal("toggleTrackTarget", singleTarget)
+	else:
+		cameraMain.emit_signal("toggleTrackTarget", null)
+			
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
