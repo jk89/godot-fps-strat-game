@@ -17,13 +17,12 @@ onready var worldNode = self#treeRoot.find_node("world", true, false)
 onready var allSelectableUnits = []
 func _ready():
 	viewportMap.world = viewportMain.world
-	print(viewportMap)
 	pass
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	randomize()
 	#allSelectableUnits.push_front(self.find_node("player"))
-	for i in range(5):
+	for i in range(20):
 		var player = preload("res://player2.tscn")
 		var s = player.instance()
 		#s.set_name("kek")
